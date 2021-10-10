@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "chain": "rm -rf ./dist && hardhat node --show-stack-traces",
+    "deploy": "hardhat run --network ${NETWORK:-localhost} scripts/deploy.js"
   },
   "dependencies": {
     "@openzeppelin/contracts": "^4.1.0",
