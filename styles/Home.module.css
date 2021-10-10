@@ -1,5 +1,6 @@
 .container {
-  background-image: url('/punk-pattern.png');
+  /* background-image: url('/punk-pattern.png'); */
+  background: #000;
   text-align: center;
 }
 
@@ -17,17 +18,17 @@
 
 .description {
   font-size: x-large;
-  text-shadow: 0 0 6px #000000, 0 5px 15px #FECB33;
+  /* text-shadow: 0 0 6px #000000, 0 5px 15px #FECB33; */
 }
 
 .opensea {
   font-size: xx-large;
   color: #1C6ADB !important;
-  text-shadow: 0 0 6px #000000, 0 5px 15px #FFF;
+  /* text-shadow: 0 0 6px #000000, 0 5px 15px #FFF; */
 }
 
 .win {
-  text-shadow: 0 0 6px #000000, 0 5px 19px #00FF00 !important;
+  /* text-shadow: 0 0 6px #000000, 0 5px 19px #00FF00 !important; */
 }
 
 .description-size {
@@ -105,28 +106,79 @@
   }
 }
 
+h1.title {
+
+}
+
+.rainbow-text {
+  background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 .btn {
-  background: #881400;
+  background: #fff;
   border-bottom: 6px inset rgba(0, 0, 0, .5);
   border-left: 6px inset rgba(0, 0, 0, .5);
   border-right: 6px inset rgba(255, 255, 255, .5);
   border-top: 6px inset rgba(255, 255, 255, .5);
   box-sizing: border-box;
-  color: white;
+  color: 000;
   cursor: pointer;
   display: inline-block;
-  font-size: 2.2rem;
+  font-size: 2rem;
   margin: 1rem;
+  margin-bottom: 5rem;
   min-width: 200px;
-  padding: .5rem;
+  padding: 1rem 1.5rem;
   text-transform: uppercase;
   width: auto;
-  
+  /* color: #fff; */
+  background: #fff;
+  color: #fff;
+
+  background-image: linear-gradient(to left, white, gray, black, violet, indigo, blue, green, yellow, orange, red, black, gray, white);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  /* background: linear-gradient(105deg, #f6d365, #fda085, #f6d365, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3); */
+  /* background: linear-gradient(90deg, violet, indigo, blue, green, yellow, orange, red, violet); */
+  /* background: linear-gradient(90deg, #00C0FF 0%, #FFCF00 49%, #FC4F4F 80%, #00C0FF 100%); */
+  /* background: linear-gradient(to left, white 0%, gray 10%, black 20%, violet 30%, indigo 40%, blue 50%, green 60%, yellow 70%, orange 80%,white 90%); */
+  background-size: 800% 800%;
+  animation: rainbow 5s linear infinite;
+
+  /* animation: slidebg 6s linear infinite; */
+
+  border-radius: 10px;
 }
+
+@keyframes slidebg {
+  to {
+    background-position: -80vw;
+  }
+}
+
+@-webkit-keyframes rainbow {
+  0%{background-position:0% 100%}
+  100%{background-position:100% 0%}
+}
+@-moz-keyframes rainbow {
+  0%{background-position:0% 100%}
+  100%{background-position:100% 0%}
+}
+@-o-keyframes rainbow {
+  0%{background-position:0% 100%}
+  100%{background-position:100% 0%}
+}
+@keyframes rainbow {
+  0%{background-position:0% 100%}
+  100%{background-position:100% 0%}
+}
+
 .btn:focus,
 .btn:hover {
-    background: #A81000;
-  }
+  /* background: rgb(236, 161, 39); */
+}
 .tada {
   -webkit-animation-name: tada;
   animation-name: tada;
@@ -181,4 +233,3 @@
     transform: scale3d(1, 1, 1);
   }
 }
-

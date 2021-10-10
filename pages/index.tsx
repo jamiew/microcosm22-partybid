@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import punkImage from '../public/punk2066.png'
 
 import Web3 from "web3";
 import Web3Modal from "web3modal";
@@ -36,9 +35,11 @@ export default function Home() {
     });
   }
 
+  const contractAddress = '0xdd75fed2b89fc0ed5a955f6856a44dcc9e453ae3';
+
   const claimToken = async () => {
     setClaiming(true);
-    let Contract = new web3.eth.Contract(PartyBidMicrocosm22.abi, '0x1003fCbA76b07bb978B79a71D11e957DCdD54EBD');
+    let Contract = new web3.eth.Contract(PartyBidMicrocosm22.abi, contractAddress);
     await Contract.methods.mintCollectible().send({ from: account });
     setClaiming(false);
     setClaimed(true);
@@ -52,7 +53,7 @@ export default function Home() {
         let web3: any = new Web3(provider);
         let chain = await web3.eth.getChainId();
 
-        let Contract = new web3.eth.Contract(PartyBidMicrocosm22.abi, '0x1003fCbA76b07bb978B79a71D11e957DCdD54EBD');
+        let Contract = new web3.eth.Contract(PartyBidMicrocosm22.abi, contractAddress);
         let accounts = await web3.eth.getAccounts()
         let balance = await Contract.methods.hasBalance().call({ from: accounts[0] })
         let minted = await Contract.methods.minted(accounts[0]).call({ from: accounts[0] })
@@ -70,13 +71,13 @@ export default function Home() {
     if (claiming) {
       return <h5 className={styles.description}>NFT being claimed...</h5>
     } if (claimed) {
-      return <h4 className={[styles.win, styles.tada].join(' ')}>Party Punk#2066 claimed!</h4>
+      return <h4 className={[styles.win, styles.tada].join(' ')}>Party collectible claimed!</h4>
     } else if (account === '') {
       return <button className={styles.btn} onClick={connect} >Connect Wallet </button>
     } else if (chainId !== 1) {
       return <h5 className={styles.description}> Please connect to the Ethereum Network</h5>
     } else if (!hasBalance) {
-      return <h5 className={styles.description}>You must have participated in the Punk#2066 PartyBid</h5>
+      return <h5 className={styles.description}>You must have participated in the Microcosm #22 PartyBid</h5>
     } else if (hasMinted) {
       return <h5 className={styles.description}>You have already claimed</h5>
     } else {
@@ -87,21 +88,25 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>PartyBid Punk#2066</title>
-        <meta name="description" content="Participated in the Punk#2066 PartyBid? Claim your party punk!" />
+        <title>Microcosm #22 PartyBid</title>
+        <meta name="description" content="Participated in the Microcosm #22 PartyBid? Claim your party collectible" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main className={styles.header}>
-        <h1 className={styles.title}>PartyBid Punk#2066</h1>
+        <h1 className={styles.title}>Microcosm #22 PartyBid</h1>
 
-        <a href="https://opensea.io/collection/partybid-punk2066" target="_blank" rel="noreferrer">
+        <a href="https://foundation.app/@JenStark_Vault/cosmos/22" target="_blank" rel="noreferrer">
           <div className={styles.imageWrapper}>
-            <Image src={punkImage} className={styles.hearts} alt="logo" />
+            <video autoPlay loop style={{ width: '800px', height: '800px' }}>
+              <source src="https://succcpsttod4xbn3eh2yxsqwxqatf3fwuk7lufvgrydshuay4yka.arweave.net/lQQhPlObh8uFuyH1i8oWvAEy7LaivroWpo4HI9AY5hQ" type="video/mp4" />
+            </video>
           </div>
         </a>
         <h5 className={[styles.description, styles.descriptionSize].join(' ')}>
-          Participated in the Punk#2066 PartyBid? Claim your party punk!
+          Did you participate in the <a href="https://www.partybid.app/party/0x5dCc03D9A613E59db4751D1071dBAF3cAEDFFd30">Microcosm #22 PartyBid</a>?
+          <br />
+          Claim your party collectible today
         </h5>
         {bottomButton()}
       </main>
