@@ -5,14 +5,16 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "./IPartyBid.sol";
 
-contract PartyBidPunk2066 is ERC721URIStorage, Ownable {
+contract PartyBidMicrocosm22 is ERC721URIStorage, Ownable {
   uint256 public tokenCounter;
   string public internalTokenURI;
+
   IPartyBid public deadToken;
+
   mapping(address => bool) public minted;
 
   constructor(string memory _tokenURI, address _deadAddress)
-    ERC721("PartyBid Punk#2066", "PBP#2066")
+    ERC721("PartyBid Microcosm #22", "PBMC#22")
   {
     tokenCounter = 0;
     internalTokenURI = _tokenURI;
@@ -20,7 +22,7 @@ contract PartyBidPunk2066 is ERC721URIStorage, Ownable {
   }
 
   function mintCollectible() public {
-    require(deadToken.totalContributed(msg.sender) > 0, "Owner didn't contributed in the PartyBid");
+    require(deadToken.totalContributed(msg.sender) > 0, "Owner didn't contribute to the PartyBid");
     require(minted[msg.sender] == false, "NFT already minted");
     minted[msg.sender] = true;
 

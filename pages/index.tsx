@@ -7,7 +7,7 @@ import punkImage from '../public/punk2066.png'
 import Web3 from "web3";
 import Web3Modal from "web3modal";
 import WalletConnectProvider from "@walletconnect/web3-provider";
-import PartyBidPunk2066 from "../artifacts/contracts/PartyBidPunk2066.sol/PartyBidPunk2066.json";
+import PartyBidMicrocosm22 from "../artifacts/contracts/PartyBidMicrocosm22.sol/PartyBidMicrocosm22.json";
 
 const providerOptions = {
   walletconnect: {
@@ -38,7 +38,7 @@ export default function Home() {
 
   const claimToken = async () => {
     setClaiming(true);
-    let Contract = new web3.eth.Contract(PartyBidPunk2066.abi, '0x1003fCbA76b07bb978B79a71D11e957DCdD54EBD');
+    let Contract = new web3.eth.Contract(PartyBidMicrocosm22.abi, '0x1003fCbA76b07bb978B79a71D11e957DCdD54EBD');
     await Contract.methods.mintCollectible().send({ from: account });
     setClaiming(false);
     setClaimed(true);
@@ -52,7 +52,7 @@ export default function Home() {
         let web3: any = new Web3(provider);
         let chain = await web3.eth.getChainId();
 
-        let Contract = new web3.eth.Contract(PartyBidPunk2066.abi, '0x1003fCbA76b07bb978B79a71D11e957DCdD54EBD');
+        let Contract = new web3.eth.Contract(PartyBidMicrocosm22.abi, '0x1003fCbA76b07bb978B79a71D11e957DCdD54EBD');
         let accounts = await web3.eth.getAccounts()
         let balance = await Contract.methods.hasBalance().call({ from: accounts[0] })
         let minted = await Contract.methods.minted(accounts[0]).call({ from: accounts[0] })
