@@ -9,20 +9,20 @@ contract PartyBidMicrocosm22 is ERC721URIStorage, Ownable {
   uint256 public tokenCounter;
   string public internalTokenURI;
 
-  IPartyBid public deadToken;
+  IPartyBid public partyBidToken;
 
   mapping(address => bool) public minted;
 
-  constructor(string memory _tokenURI, address _deadAddress)
-    ERC721("PartyBid Microcosm #22", "PBMC#22")
+  constructor(string memory _tokenURI, address _partyBidTokenAddress)
+    ERC721("Microcosm #22 PartyBid", "MC22PB")
   {
     tokenCounter = 0;
     internalTokenURI = _tokenURI;
-    deadToken = IPartyBid(_deadAddress);
+    partyBidToken = IPartyBid(_partyBidTokenAddress);
   }
 
   function mintCollectible() public {
-    require(deadToken.totalContributed(msg.sender) > 0, "Owner didn't contribute to the PartyBid");
+    require(partyBidToken.totalContributed(msg.sender) > 0, "Owner didn't contribute to the PartyBid");
     require(minted[msg.sender] == false, "NFT already minted");
     minted[msg.sender] = true;
 
@@ -33,6 +33,6 @@ contract PartyBidMicrocosm22 is ERC721URIStorage, Ownable {
   }
 
   function hasBalance() public view returns (bool) {
-    return deadToken.totalContributed(msg.sender) > 0;
+    return partyBidToken.totalContributed(msg.sender) > 0;
   }
 }

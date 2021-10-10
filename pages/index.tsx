@@ -35,11 +35,14 @@ export default function Home() {
     });
   }
 
-  const contractAddress = '0xdd75fed2b89fc0ed5a955f6856a44dcc9e453ae3';
+  // FIXME replace with prodcution contract URL
+  // currentlyt using dev address
+  // const contractAddress = '0xdd75fed2b89fc0ed5a955f6856a44dcc9e453ae3';
+  const contractAddress = '0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512';
 
   const claimToken = async () => {
     setClaiming(true);
-    let Contract = new web3.eth.Contract(PartyBidMicrocosm22.abi, contractAddress);
+    const Contract = new web3.eth.Contract(PartyBidMicrocosm22.abi, contractAddress);
     await Contract.methods.mintCollectible().send({ from: account });
     setClaiming(false);
     setClaimed(true);
@@ -54,6 +57,8 @@ export default function Home() {
         let chain = await web3.eth.getChainId();
 
         let Contract = new web3.eth.Contract(PartyBidMicrocosm22.abi, contractAddress);
+        console.log("Contract", Contract)
+
         let accounts = await web3.eth.getAccounts()
         let balance = await Contract.methods.hasBalance().call({ from: accounts[0] })
         let minted = await Contract.methods.minted(accounts[0]).call({ from: accounts[0] })
