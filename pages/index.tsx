@@ -25,6 +25,7 @@ export default function Home() {
   let [hasMinted, setHasMinted] = useState(true);
   let [claimed, setClaimed] = useState(false);
   let [claiming, setClaiming] = useState(false);
+  let [videoPlaying, setVideoPlaying] = useState(false);
 
   let web3Modal: any
   if (process.browser) {
@@ -95,19 +96,69 @@ export default function Home() {
       <Head>
         <title>Microcosm #22 PartyBid</title>
         <meta name="description" content="Participated in the Microcosm #22 PartyBid? Claim your party collectible" />
+
+        {/* Favicons */}
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
         <link rel="icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+        {/* Open Graph / Social Preview */}
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Microcosm #22 PartyBid" />
+        <meta property="og:description" content="Participated in the Microcosm #22 PartyBid? Claim your party collectible" />
+        <meta property="og:image" content="/thumbnail.png" />
+
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Microcosm #22 PartyBid" />
+        <meta name="twitter:description" content="Participated in the Microcosm #22 PartyBid? Claim your party collectible" />
+        <meta name="twitter:image" content="/thumbnail.png" />
       </Head>
 
       <main className={styles.header}>
         <h1 className={styles.title}>Microcosm #22 PartyBid</h1>
 
-        <a href="https://foundation.app/@JenStark_Vault/cosmos/22" target="_blank" rel="noreferrer">
-          <div className={styles.imageWrapper}>
-            <video autoPlay loop style={{ width: '800px', height: '800px' }}>
+        <div className={styles.imageWrapper}>
+          {videoPlaying ? (
+            <video autoPlay loop style={{ width: '800px', maxWidth: '90vw', height: 'auto', aspectRatio: '1' }}>
               <source src="https://succcpsttod4xbn3eh2yxsqwxqatf3fwuk7lufvgrydshuay4yka.arweave.net/lQQhPlObh8uFuyH1i8oWvAEy7LaivroWpo4HI9AY5hQ" type="video/mp4" />
             </video>
-          </div>
-        </a>
+          ) : (
+            <div
+              onClick={() => setVideoPlaying(true)}
+              style={{ position: 'relative', cursor: 'pointer', width: '800px', maxWidth: '90vw' }}
+            >
+              <img
+                src="/thumbnail.png"
+                alt="Microcosm #22"
+                style={{ width: '100%', height: 'auto', display: 'block' }}
+              />
+              <div style={{
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                width: '80px',
+                height: '80px',
+                backgroundColor: 'rgba(0, 0, 0, 0.7)',
+                borderRadius: '50%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+                <div style={{
+                  width: 0,
+                  height: 0,
+                  borderTop: '20px solid transparent',
+                  borderBottom: '20px solid transparent',
+                  borderLeft: '30px solid white',
+                  marginLeft: '8px',
+                }} />
+              </div>
+            </div>
+          )}
+        </div>
         <h5 className={[styles.description, styles.descriptionSize].join(' ')}>
           Did you participate in the <a href="https://www.partybid.app/party/0x5dCc03D9A613E59db4751D1071dBAF3cAEDFFd30">Microcosm #22 PartyBid</a>?
           <br />
