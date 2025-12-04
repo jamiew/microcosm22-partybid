@@ -129,6 +129,7 @@ export default function Home() {
               onClick={() => setVideoPlaying(true)}
               style={{ position: 'relative', cursor: 'pointer', width: '800px', maxWidth: '90vw' }}
             >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/thumbnail.png"
                 alt="Microcosm #22"
